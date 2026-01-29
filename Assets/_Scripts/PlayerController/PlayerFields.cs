@@ -3,10 +3,12 @@ using UnityEngine;
 
 partial class PlayerController
 {
-    float speed = 5f;                   // 이동 속도
-    float jump = 5f;                    // 점프력
+    float _speed = 5f;                  // 이동 속도
+    float _jumpPower = 5f;              // 점프력
     bool _onAir = false;                // 공중에 떠있는지 여부
     bool _attacking = false;            // 공격중 여부
+    bool _reloading = false;            // 재장전 여부
+    bool _damaged = false;              // 데미지 여부
     Stopwatch _idleTimer;               // 특정 시간동안 가만히 있으면 딴짓함
 
     Animator animator;                  // 애니메이터
