@@ -40,7 +40,7 @@ public partial class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(Dam))
+        if (collision.CompareTag("임시 값"))
         {
             _getDamgage(10);
         }

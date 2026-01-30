@@ -1,6 +1,5 @@
 ﻿static class Tags
 {
-    public static string Dam = "Dam";
     public static string Player = "Player";
 }
 
