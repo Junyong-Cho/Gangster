@@ -9,7 +9,6 @@ public partial class PlayerController : MonoBehaviour
     {
         input = new();                                                          // 인풋시스템 생성
         _idleTimer = Stopwatch.StartNew();                                      // 딴짓 시간 측정 시작
-        animator = GetComponent<Animator>();                                    // 애니메이터 가져오기
 
         input.Player.Move.performed += context => _action(() =>                 // 움직임
         {
@@ -25,6 +24,8 @@ public partial class PlayerController : MonoBehaviour
         input.Player.Jump.performed += context => _action(_jump);               // 점프
 
         input.Player.Reload.performed += context => _action(_reload);
+
+        hpBar.value = 1;
     }
 
     void OnEnable()             
@@ -41,21 +42,17 @@ public partial class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag(Dam))
         {
-
+            _getDamgage(10);
         }
     }
-
     
-
     void Update()
     {
-        if (_moveVec.x < 0)                 // 좌우 반전
-            flipRender.flipX = true;
-        else if (_moveVec.x > 0)
-            flipRender.flipX = false;
+
+        _speed = (_reloading || _damaging) ? 2f : 5f;
 
         transform.Translate(_moveVec * _speed * Time.deltaTime); // 이동
-        _setAnimation();                    // 애니메이션 설정
+        _setAnimation();
     }
 
     void FixedUpdate()                      // 공중에 있는지 측정

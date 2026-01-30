@@ -1,8 +1,6 @@
 using UnityEngine;
 
-using static AnimeParams;
-
-public class OnAnimeQuit : StateMachineBehaviour
+public class OnReloadQuit : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -19,8 +17,7 @@ public class OnAnimeQuit : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger(Reload);
-        animator.GetComponent<PlayerController>()._reloadQuit();
+        animator.GetComponent<PlayerController>().ReloadQuit();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
