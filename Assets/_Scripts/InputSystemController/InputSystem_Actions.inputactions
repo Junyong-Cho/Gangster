@@ -32,15 +32,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Reload",
-                    "type": "Button",
-                    "id": "203cc03a-8c44-4810-8486-af3d9932da67",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -142,10 +133,27 @@
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "Ganster1",
+            "id": "994fd865-1272-4509-ad41-5ccf385f6556",
+            "actions": [
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "c08eeb1f-f5b0-4f19-97b6-19959301de7d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "e4287741-f72c-4514-9319-15b3b234919c",
+                    "id": "4432eb40-7137-4e21-a6b2-166573adcdf4",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",

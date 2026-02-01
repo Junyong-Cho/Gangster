@@ -8,7 +8,10 @@ partial class ZombieController
     {
         float dist = Vector2.Distance(posA, posB);
 
-        if (dist < _canAttak) ;
+        if (dist < _canAttak)
+        {
+            // 공격 로직 작성
+        }
         else if (dist < _recognizedDist)
             return posA - posB;
 

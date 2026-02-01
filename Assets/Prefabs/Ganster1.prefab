@@ -85,7 +85,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.672
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -240,6 +240,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8a33d55eec2f84aae18d7d3ca785f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HPBoard
+--- !u!1 &4731940058645567338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3257888278651615222}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3257888278651615222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731940058645567338}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.33, y: -0.365, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8347507931208075088}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5025236729337877419
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,9 +282,9 @@ GameObject:
   - component: {fileID: 8347507931208075088}
   - component: {fileID: 3146311730869455948}
   - component: {fileID: 6811208716786620922}
-  - component: {fileID: 8313457966942395378}
   - component: {fileID: 172561437091386761}
   - component: {fileID: 9095641865021412267}
+  - component: {fileID: 8582052023792052015}
   m_Layer: 0
   m_Name: Ganster1
   m_TagString: Player
@@ -276,6 +307,7 @@ Transform:
   m_Children:
   - {fileID: 635010870795489599}
   - {fileID: 3468982089621941446}
+  - {fileID: 3257888278651615222}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3146311730869455948
@@ -359,25 +391,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8313457966942395378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5025236729337877419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce15eea9284170f4fb25e18c76492945, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  flipRender: {fileID: 3146311730869455948}
-  rgBody: {fileID: 172561437091386761}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  Feet: {fileID: 635010870795489599}
-  hpBar: {fileID: 4517405496114836301}
 --- !u!50 &172561437091386761
 Rigidbody2D:
   serializedVersion: 5
@@ -442,6 +455,28 @@ CapsuleCollider2D:
   m_Offset: {x: -0.088755846, y: -0.4046783}
   m_Size: {x: 0.38506222, y: 1.0192147}
   m_Direction: 0
+--- !u!114 &8582052023792052015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5025236729337877419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2ed60ae4f05164dab5aa4d987edf57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ganster1Controller
+  animator: {fileID: 6811208716786620922}
+  flipRender: {fileID: 3146311730869455948}
+  rgBody: {fileID: 172561437091386761}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  Feet: {fileID: 635010870795489599}
+  Bullet: {fileID: 2286479513829772384, guid: 095f60ec842380b48ad410a4a79b6993, type: 3}
+  hpBar: {fileID: 4517405496114836301}
+  Gun: {fileID: 3257888278651615222}
 --- !u!1 &5401901428945257328
 GameObject:
   m_ObjectHideFlags: 0
