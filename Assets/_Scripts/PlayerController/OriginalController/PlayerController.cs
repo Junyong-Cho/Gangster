@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using UnityEngine;
 
-public partial class PlayerController : MonoBehaviour
+public partial class PlayerController : AnyController
 {
     protected virtual void Awake()
     {
@@ -36,15 +36,15 @@ public partial class PlayerController : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("임시 값"))
-        {
-            _getDamgage(10);
-        }
+        //if (collision.CompareTag("임시 값"))
+        //{
+        //    _getDamgage(10);
+        //}
     }
 
     protected virtual void Update()
-    {
-        _speed = (_damaging) ? 2f : 5f;
+    { 
+        _setSpeed();
 
         transform.Translate(_moveVec * _speed * Time.deltaTime); // 이동
         _setAnimation();

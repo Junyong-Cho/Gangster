@@ -12,21 +12,6 @@ public partial class PlayerController
         _idleTimer.Start();
     }
 
-    protected virtual void _getDamgage(int damage)                    // 데미지 입음
-    {
-        _damaging = true;
-        animator.SetTrigger(Damage);
-
-        hp = Math.Max(0, hp - damage);              // 최소 체력은 0
-
-        hpBar.value = hp / maxHp;
-
-        if (hp == 0)                                // hp가 0이면 죽음
-            _die();
-    }
-
-    public virtual void DamageQuit() => _damaging = false;   // 데미지 애니메이션 탈출
-
     protected virtual void _die()
     {
         _alive = false;
@@ -35,47 +20,22 @@ public partial class PlayerController
         animator.SetTrigger(Die);
     }
 
-    protected virtual void _attack()
+    protected override void _attack()
     {
         //StartCoroutine(_attackMotion());
     }
-
-    //IEnumerator _attackMotion()                   // 버튼 누르고 있는 동안 공격
-    //{
-    //    var cor = StartCoroutine(_shoot());
-
-    //    while (input.Player.Attack.IsPressed())
-    //    {
-    //        if (_moveVec == Vector2.zero && !_onAir && !_reloading && !_damaging)
-    //        {
-    //            _attacking = true;
-
-    //        }
-    //        else
-    //        {
-    //            _attacking = false;
-
-    //        }
-    //        yield return null;
-    //    }
-    //}
-
-    //IEnumerator _shoot()
-    //{
-    //    while (_attacking)
-    //    {
-    //        Instantiate(Bullet, Gun.position, Quaternion.identity);
-    //        yield return _attackSpeed;
-    //    }
-    //}
 
     protected virtual void _jump()                            // 바닥에 있어야 점프
     {
         if (!_onAir)
         {
-            _jumpPower = _speed;
-            rgBody.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+            rgBody.AddForce(Vector2.up * _speed /* 점프력과 동일 */ , ForceMode2D.Impulse);
         }
+    }
+
+    protected virtual void _setSpeed()
+    {
+        _speed = _damage ? 2f : 5f;
     }
 
     protected virtual void _setAnimation()
@@ -84,11 +44,11 @@ public partial class PlayerController
 
         if (_moveVec.x < 0)                 // 좌우 반전
         {
-            flipRender.flipX = true;
+            flipRenderer.flipX = true;
         }
         else if (_moveVec.x > 0)
         {
-            flipRender.flipX = false;
+            flipRenderer.flipX = false;
         }
 
         animator.SetInteger(IdleTime, (int)(_idleTimer.ElapsedMilliseconds / 1000));
@@ -96,3 +56,32 @@ public partial class PlayerController
         animator.SetBool(Jump, _onAir);
     }
 }
+
+//IEnumerator _attackMotion()                   // 버튼 누르고 있는 동안 공격
+//{
+//    var cor = StartCoroutine(_shoot());
+
+//    while (input.Player.Attack.IsPressed())
+//    {
+//        if (_moveVec == Vector2.zero && !_onAir && !_reloading && !_damaging)
+//        {
+//            _attacking = true;
+
+//        }
+//        else
+//        {
+//            _attacking = false;
+
+//        }
+//        yield return null;
+//    }
+//}
+
+//IEnumerator _shoot()
+//{
+//    while (_attacking)
+//    {
+//        Instantiate(Bullet, Gun.position, Quaternion.identity);
+//        yield return _attackSpeed;
+//    }
+//}

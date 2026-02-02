@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public partial class ZombieController : MonoBehaviour
+public partial class ZombieController : AnyController
 {
     void Start()
     {
         hpBar.value = 1;
     }
 
+
     void Update()
     {
-        Vector2 move = _moveVector(PlayerTrackerSingleton.GetPlayer().transform.position, transform.position);
+        Vector2 move = _damage ? Vector2.zero : _moveVector(PlayerTrackerSingleton.GetPlayer().transform.position, transform.position);
 
         move.Normalize();
 

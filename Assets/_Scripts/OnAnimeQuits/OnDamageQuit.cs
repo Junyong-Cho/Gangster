@@ -17,7 +17,9 @@ public class OnDamageQuit : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<PlayerController>().DamageQuit();
+        if (animator.GetCurrentAnimatorStateInfo(layerIndex).fullPathHash == stateInfo.fullPathHash)
+            return;
+        animator.GetComponent<AnyController>().DamageQuit();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

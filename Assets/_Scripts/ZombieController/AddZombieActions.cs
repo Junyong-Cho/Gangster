@@ -4,7 +4,7 @@ using UnityEngine;
 
 partial class ZombieController
 {
-    Vector2 _moveVector(Vector2 posA, Vector2 posB)
+    protected virtual Vector2 _moveVector(Vector2 posA, Vector2 posB)
     {
         float dist = Vector2.Distance(posA, posB);
 
@@ -17,13 +17,20 @@ partial class ZombieController
 
         return Vector2.zero;
     }
+    
 
-    void _setAnime(Vector2 move)
+    public void GetUppercut(Vector2 dir, int damage)
+    {
+        rgBody.AddForce(dir, ForceMode2D.Impulse);
+        GetDamage(damage);
+    }
+
+    protected virtual void _setAnime(Vector2 move)
     {
         if (move.x < 0)
-            filpRenderer.flipX = true;
+            flipRenderer.flipX = true;
         else if (move.x > 0)
-            filpRenderer.flipX = false;
+            flipRenderer.flipX = false;
 
         animator.SetBool(Move, move != Vector2.zero);
     }

@@ -19,14 +19,24 @@ class Ganster1Controller : PlayerController
 
     protected override void Update()
     {
-        _speed = (_damaging || _reloading) ? 2f : 5f;
+        //_speed = (_damaging || _reloading) ? 2f : 5f;
         transform.Translate(_moveVec * _speed * Time.deltaTime); // 이동
         _setAnimation();
     }
 
+    public override void DamageQuit()
+    {
+        base.DamageQuit();
+    }
+
+    public override void GetDamage(int damage)
+    {
+        base.GetDamage(damage);
+    }
+
     void _reload()                  // 장전 시작
     {
-        if (_damaging || _reloading) return;
+        if (_damage || _reloading) return;
         _reloading = true;
         animator.SetTrigger(Reload);
     }
