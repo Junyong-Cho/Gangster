@@ -21,7 +21,7 @@ class Ganster1Controller : PlayerController
     {
         //_speed = (_damaging || _reloading) ? 2f : 5f;
         transform.Translate(_moveVec * _speed * Time.deltaTime); // 이동
-        _setAnimation();
+        _setAnimation(_moveVec);
     }
 
     public override void DamageQuit()
@@ -43,9 +43,9 @@ class Ganster1Controller : PlayerController
 
     public void ReloadQuit() => _reloading = false; // 장전 끝
 
-    protected override void _setAnimation()
+    protected override void _setAnimation(Vector2 move)
     {
-        base._setAnimation();
+        base._setAnimation(move);
         animator.SetBool(Attack, _attacking);
     }
 }

@@ -1,19 +1,31 @@
-﻿using static AnimeParams;
+﻿using UnityEngine;
+using static AnimeParams;
 
 partial class ZombieController
 {
     protected override void _attack()
     {
+        animator.SetTrigger(Attack);
+    }
+
+    void _onAttack()
+    {
+        Collider2D player = Physics2D.OverlapCircle(attackPoint.position, _attackRange, PlayerLayer);
+
         
     }
 
     public override void GetDamage(int damage)
     {
+        if (_dead) 
+            return;
+
         _hp -= damage;
 
         if (_hp <= 0)
         {
             hpBar.value = 0;
+            _dead = true;
             animator.SetTrigger(Die);
             Destroy(gameObject, 2);
         }
@@ -23,6 +35,12 @@ partial class ZombieController
         hpBar.value = _hp / _maxHp;
 
         animator.SetTrigger(Damage);
+    }
+    protected override void _setAnimation(Vector2 move)
+    {
+        base._setAnimation(move);
+
+        animator.SetBool(Move, move != Vector2.zero);
     }
 
 }

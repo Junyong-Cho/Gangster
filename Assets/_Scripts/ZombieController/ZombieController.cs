@@ -10,12 +10,12 @@ public partial class ZombieController : AnyController
 
     void Update()
     {
-        Vector2 move = _damage ? Vector2.zero : _moveVector(PlayerTrackerSingleton.GetPlayer().transform.position, transform.position);
+        Vector2 move = _damage || _dead ? Vector2.zero : _moveVector(PlayerTrackerSingleton.GetPlayer().transform.position, transform.position);
 
         move.Normalize();
 
         transform.Translate(move * Time.deltaTime * _speed);
 
-        _setAnime(move);
+        _setAnimation(move);
     }
 }

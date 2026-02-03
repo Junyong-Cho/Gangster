@@ -1,6 +1,8 @@
 ﻿using System;
 using static AnimeParams;
 
+using UnityEngine;
+
 partial class PlayerController
 {
     public override void GetDamage(int damage)                    // 데미지 입음
@@ -8,12 +10,21 @@ partial class PlayerController
         _damage = true;
         animator.SetTrigger(Damage);
         
-        _hp = Math.Max(0, _hp - damage);              // 최소 체력은 0
+        _hp -= damage;
 
-        hpBar.value = _hp / _maxHp;
-
-        if (_hp == 0)                                // hp가 0이면 죽음
+        if (_hp <= 0)                                // hp가 0이면 죽음
+        {
             _die();
+        }
+        hpBar.value = _hp / _maxHp;
     }
 
+    protected override void _setAnimation(Vector2 move)
+    {
+        base._setAnimation(move);
+
+        animator.SetInteger(IdleTime, (int)(_idleTimer.ElapsedMilliseconds / 1000));
+        animator.SetBool(Move, move != Vector2.zero);
+        animator.SetBool(Jump, _onAir);
+    }
 }

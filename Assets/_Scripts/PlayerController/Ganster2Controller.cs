@@ -4,8 +4,6 @@ using static AnimeParams;
 public class Ganster2Controller : PlayerController
 {
     [SerializeField]
-    Transform attackPoint;              // 주먹 위치
-    [SerializeField]
     LayerMask enemyLayers;              // 적 레이어
     float _attackRange;                 // 주먹 원 반경
 
@@ -24,11 +22,16 @@ public class Ganster2Controller : PlayerController
         contactFilter.useLayerMask = true;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(Tags.Player))
+        {
+            GetDamage(10);
+        }
+    }
+
     protected override void _attack()
     {
-        if (_attacking)
-            return;
-        _attacking = true;
         animator.SetTrigger(Attack);
     }
 
@@ -50,7 +53,7 @@ public class Ganster2Controller : PlayerController
         {
             Vector2 dir = Vector2.up;
 
-            if (flipRenderer.flipX)
+            if (transform.localScale.x < 0)
             {
                 dir += Vector2.left;
             }
@@ -61,7 +64,7 @@ public class Ganster2Controller : PlayerController
 
             dir.Normalize();
 
-            hitEnemy[i].GetComponent<ZombieController>().GetUppercut(dir * 2f, _attackPower);
+            hitEnemy[i].GetComponent<ZombieController>().GetUppercut(dir * 2f, _attackPower * 2);
         }
     }
 
@@ -75,8 +78,4 @@ public class Ganster2Controller : PlayerController
             _speed = 5f;
     }
 
-    void _flipAttackPoint()
-    {
-        
-    }
 }

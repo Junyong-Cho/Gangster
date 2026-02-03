@@ -14,7 +14,7 @@ public partial class PlayerController
 
     protected virtual void _die()
     {
-        _alive = false;
+        _dead = true;
         _speed = 0f;
         _jumpPower = 0f;
         animator.SetTrigger(Die);
@@ -29,31 +29,13 @@ public partial class PlayerController
     {
         if (!_onAir)
         {
-            rgBody.AddForce(Vector2.up * _speed /* 점프력과 동일 */ , ForceMode2D.Impulse);
+            rgBody.AddForce(Vector2.up * _speed /* 점프력 == 스피드 */ , ForceMode2D.Impulse);
         }
     }
 
     protected virtual void _setSpeed()
     {
         _speed = _damage ? 2f : 5f;
-    }
-
-    protected virtual void _setAnimation()
-    {
-        if (!_alive) return;
-
-        if (_moveVec.x < 0)                 // 좌우 반전
-        {
-            flipRenderer.flipX = true;
-        }
-        else if (_moveVec.x > 0)
-        {
-            flipRenderer.flipX = false;
-        }
-
-        animator.SetInteger(IdleTime, (int)(_idleTimer.ElapsedMilliseconds / 1000));
-        animator.SetBool(Move, _moveVec != Vector2.zero);
-        animator.SetBool(Jump, _onAir);
     }
 }
 

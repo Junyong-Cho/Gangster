@@ -1,6 +1,4 @@
-﻿using static AnimeParams;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 partial class ZombieController
 {
@@ -8,7 +6,7 @@ partial class ZombieController
     {
         float dist = Vector2.Distance(posA, posB);
 
-        if (dist < _canAttak)
+        if (dist < 1)
         {
             // 공격 로직 작성
         }
@@ -21,17 +19,11 @@ partial class ZombieController
 
     public void GetUppercut(Vector2 dir, int damage)
     {
+        if (_dead)
+            return;
+
         rgBody.AddForce(dir, ForceMode2D.Impulse);
         GetDamage(damage);
     }
 
-    protected virtual void _setAnime(Vector2 move)
-    {
-        if (move.x < 0)
-            flipRenderer.flipX = true;
-        else if (move.x > 0)
-            flipRenderer.flipX = false;
-
-        animator.SetBool(Move, move != Vector2.zero);
-    }
 }

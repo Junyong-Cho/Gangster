@@ -34,27 +34,14 @@ public partial class PlayerController : AnyController
         input.Disable();    
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if (collision.CompareTag("임시 값"))
-        //{
-        //    _getDamgage(10);
-        //}
-    }
-
     protected virtual void Update()
-    { 
+    {
+        if (_dead) return;
         _setSpeed();
 
         transform.Translate(_moveVec * _speed * Time.deltaTime); // 이동
-        _setAnimation();
+        _setAnimation(_moveVec);
     }
 
-    protected virtual void FixedUpdate()                      // 공중에 있는지 측정
-    {
-        var hit = Physics2D.Raycast(Feet.position, Vector2.down, 0.1f, groundLayer);
-
-        _onAir = hit.collider == null;
-    }
 
 }
