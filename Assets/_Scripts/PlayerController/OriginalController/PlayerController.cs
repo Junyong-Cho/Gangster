@@ -42,6 +42,4 @@ public partial class PlayerController : AnyController
         transform.Translate(_moveVec * _speed * Time.deltaTime); // 이동
         _setAnimation(_moveVec);
     }
-
-
 }

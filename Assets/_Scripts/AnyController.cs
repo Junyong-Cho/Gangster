@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public abstract class AnyController : MonoBehaviour
 {
+    protected int _attackPower = 10;                // 공격력
     protected bool _damage = false;                 // 데미지 입음
     protected bool _dead = false;                   // 사망
     protected float _maxHp = 100f;                  // 최대 체력

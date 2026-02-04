@@ -6,6 +6,8 @@ public partial class PlayerController
 {
     protected virtual void _action(Action action)             // 움직이면 딴짓 시간 재시작
     {
+        if (_dead)
+            return;
         _idleTimer.Reset();
         _attacking = false;
         action();
@@ -16,7 +18,6 @@ public partial class PlayerController
     {
         _dead = true;
         _speed = 0f;
-        _jumpPower = 0f;
         animator.SetTrigger(Die);
     }
 

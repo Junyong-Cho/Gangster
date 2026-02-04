@@ -22,13 +22,13 @@ public class Ganster2Controller : PlayerController
         contactFilter.useLayerMask = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag(Tags.Player))
-        {
-            GetDamage(10);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag(Tags.Player))
+    //    {
+    //        GetDamage(10);
+    //    }
+    //}
 
     protected override void _attack()
     {

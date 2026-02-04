@@ -7,6 +7,9 @@ partial class PlayerController
 {
     public override void GetDamage(int damage)                    // 데미지 입음
     {
+        if (_dead)                                   // 죽으면 반응 없음
+            return;
+
         _damage = true;
         animator.SetTrigger(Damage);
         

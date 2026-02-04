@@ -10,9 +10,10 @@ partial class ZombieController
 
     void _onAttack()
     {
-        Collider2D player = Physics2D.OverlapCircle(attackPoint.position, _attackRange, PlayerLayer);
+        PlayerController player = Physics2D.OverlapCircle(attackPoint.position, _attackRange, PlayerLayer).GetComponent<PlayerController>();
 
-        
+        if (player != null)
+            player.GetDamage(_attackPower);
     }
 
     public override void GetDamage(int damage)
