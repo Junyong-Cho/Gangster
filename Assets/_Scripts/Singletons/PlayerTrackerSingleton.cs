@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class PlayerTrackerSingleton : MonoBehaviour
 {
-    static GameObject Player;
+    static GameObject player;
 
-    void Start()
+    void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag(Tags.Player);
+        player = GameObject.FindGameObjectWithTag(Tags.Player);
     }
 
-    public static GameObject GetPlayer() => Player;
+    public static GameObject Player => player;
+    public static Vector2 PlayerPostion => player.transform.position;
 }

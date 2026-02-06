@@ -8,11 +8,15 @@ public class RandomGeneratorController : MonoBehaviour
     [SerializeField]
     GameObject Zombie;
 
-    WaitForSeconds wait = new(3);
+    public float waitSecond { get; set; } = 3;
+
+    WaitForSeconds wait;
 
     void Start()
     {
         StartCoroutine(Generate());
+
+        wait = new(waitSecond);
     }
 
     IEnumerator Generate()

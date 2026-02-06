@@ -5,15 +5,20 @@ partial class ZombieController
 {
     protected override void _attack()
     {
+        _whileAttack = true;
         animator.SetTrigger(Attack);
     }
 
     void _onAttack()
     {
-        PlayerController player = Physics2D.OverlapCircle(attackPoint.position, _attackRange, PlayerLayer).GetComponent<PlayerController>();
+        var collider = Physics2D.OverlapCircle(attackPoint.position, _attackRange, PlayerLayer);
 
-        if (player != null)
-            player.GetDamage(_attackPower);
+        if (collider == null)
+            return;
+
+        PlayerController player = collider.GetComponent<PlayerController>();
+
+        player.GetDamage(_attackPower);
     }
 
     public override void GetDamage(int damage)

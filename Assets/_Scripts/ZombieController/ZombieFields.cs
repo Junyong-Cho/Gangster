@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 partial class ZombieController
 {
@@ -7,4 +8,7 @@ partial class ZombieController
     [SerializeField]
     LayerMask PlayerLayer;
     float _attackRange = 0.5f;
+
+    [SerializeField]
+    NavMeshAgent agent;
 }

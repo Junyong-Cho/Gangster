@@ -2,18 +2,37 @@ using UnityEngine;
 
 public partial class ZombieController : AnyController
 {
+
     void Start()
     {
         hpBar.value = 1;
+
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.updatePosition = false;
+
     }
 
     void Update()
     {
-        // 데미지 입거나 죽으면 속도 0
-        Vector2 move = _damage || _dead ? Vector2.zero : 
-            _moveVector(PlayerTrackerSingleton.GetPlayer().transform.position, transform.position);
+        Vector2 move = Vector2.zero;
 
-        move.Normalize();
+        Vector2 player = PlayerTrackerSingleton.PlayerPostion;
+
+        if (!_damage && !_dead && !_whileAttack)
+        {
+            if(Vector2.Distance(transform.position, player) < 1f)
+            {
+                _attack();
+            }
+            else
+            {
+                agent.SetDestination(player);
+                agent.nextPosition = transform.position;
+
+                move = (agent.steeringTarget - transform.position).normalized;
+            }
+        }
 
         transform.Translate(move * Time.deltaTime * _speed);
 

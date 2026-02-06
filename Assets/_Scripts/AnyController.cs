@@ -10,6 +10,7 @@ public abstract class AnyController : MonoBehaviour
     protected float _hp = 100f;                     // 체력
     protected bool _onAir = false;                  // 공중에 떠있는지 여부
     protected float preVelocityY = 0;               // 이전 프레임에 중력이 어디 방향으로 작동했는지 여부
+    protected bool _whileAttack;
 
     [SerializeField]
     protected Rigidbody2D rgBody;                   // 리지드바디
@@ -23,6 +24,8 @@ public abstract class AnyController : MonoBehaviour
 
     public abstract void GetDamage(int damage);     // 데미지 입음
     public virtual void DamageQuit() => _damage = false;    // 데미지 애니메이션 탈출
+
+    public virtual void AttackQuit() => _whileAttack = false;
 
     protected abstract void _attack();              // 공격
 
