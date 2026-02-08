@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using static AnimeParams;
 
 partial class ZombieController
@@ -33,7 +34,7 @@ partial class ZombieController
             hpBar.value = 0;
             _dead = true;
             animator.SetTrigger(Die);
-            Destroy(gameObject, 2);
+            StartCoroutine(_destroyZombie(gameObject));
         }
 
         _damage = true;
@@ -42,6 +43,20 @@ partial class ZombieController
 
         animator.SetTrigger(Damage);
     }
+
+    IEnumerator _destroyZombie(GameObject zombie)
+    {
+        if (true)//(Random.Range(0, 10) == 0)               // 10% 확률로 회복 아이템 생성
+        {
+            var heal = ObjectPoolSingletons.HealItemPool.Get();
+            heal.transform.position = transform.position;
+        }
+
+        yield return _dieCount;
+
+        ObjectPoolSingletons.Zombie1Pool.Release(zombie);
+    }
+
     protected override void _setAnimation(Vector2 move)
     {
         base._setAnimation(move);

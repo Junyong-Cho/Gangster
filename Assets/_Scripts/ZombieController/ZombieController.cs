@@ -5,12 +5,19 @@ public partial class ZombieController : AnyController
 
     void Start()
     {
-        hpBar.value = 1;
-
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         agent.updatePosition = false;
+    }
 
+    void OnEnable()
+    {
+        hpBar.value = 1;
+        _hp = _maxHp;
+
+        _dead = false;
+
+        animator.Rebind();
     }
 
     void Update()

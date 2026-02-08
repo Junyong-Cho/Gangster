@@ -24,7 +24,9 @@ public class RandomGeneratorController : MonoBehaviour
         while (true)
         {
             int genNo = Random.Range(0, Generators.Length);
-            Instantiate(Zombie, Generators[genNo].position, Quaternion.identity);
+            GameObject zombie = ObjectPoolSingletons.Zombie1Pool.Get();
+
+            zombie.transform.position = Generators[genNo].position;
             
             yield return wait;
         }

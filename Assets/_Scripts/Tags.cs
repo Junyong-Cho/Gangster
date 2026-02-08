@@ -1,6 +1,7 @@
 ﻿static class Tags
 {
     public static string Player = "Player";
+    public static string HealItem = "HealItem";
 }
 
 static class AnimeParams

@@ -1,3 +1,5 @@
+using static Tags;
+
 using System.Diagnostics;
 using UnityEngine;
 
@@ -22,6 +24,17 @@ public partial class PlayerController : AnyController
         input.Player.Jump.performed += context => _action(_jump);               // 점프
 
         hpBar.value = 1;
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(HealItem))
+        {
+            _hp = Mathf.Min(_maxHp, _hp + 30);
+            hpBar.value = _hp / _maxHp;
+
+            ObjectPoolSingletons.HealItemPool.Release(collision.gameObject.transform.parent.gameObject);
+        }
     }
 
     protected virtual void OnEnable()             

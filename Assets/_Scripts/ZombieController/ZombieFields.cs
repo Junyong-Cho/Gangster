@@ -11,4 +11,6 @@ partial class ZombieController
 
     [SerializeField]
     NavMeshAgent agent;
+
+    WaitForSeconds _dieCount = new(2);  // 죽고 나서 2초간 대기
 }
