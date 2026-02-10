@@ -4,6 +4,7 @@ using UnityEngine.AI;
 partial class ZombieController
 {
     static float _speed = 1f;
+    static int _score = 100;
 
     [SerializeField]
     LayerMask PlayerLayer;

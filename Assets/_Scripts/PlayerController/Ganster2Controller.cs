@@ -41,7 +41,9 @@ public class Ganster2Controller : PlayerController
 
         for(int i = 0; i < enemys; i++)
         {
-            hitEnemy[i].GetComponent<ZombieController>().GetDamage(_attackPower);
+            int score = hitEnemy[i].GetComponent<ZombieController>().GetDamage(_attackPower);
+
+            AddScore(score);
         }
     }
 
@@ -64,7 +66,9 @@ public class Ganster2Controller : PlayerController
 
             dir.Normalize();
 
-            hitEnemy[i].GetComponent<ZombieController>().GetUppercut(dir * 2f, _attackPower * 2);
+            int score = hitEnemy[i].GetComponent<ZombieController>().GetUppercut(dir * 2f, _attackPower * 2);
+
+            AddScore(score);
         }
     }
 

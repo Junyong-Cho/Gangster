@@ -5,10 +5,10 @@ using UnityEngine;
 
 partial class PlayerController
 {
-    public override void GetDamage(int damage)                    // 데미지 입음
+    public override int GetDamage(int damage)                    // 데미지 입음
     {
         if (_dead)                                   // 죽으면 반응 없음
-            return;
+            return 0;
 
         _damage = true;
         animator.SetTrigger(Damage);
@@ -20,6 +20,7 @@ partial class PlayerController
             _die();
         }
         hpBar.value = _hp / _maxHp;
+        return 0;
     }
 
     protected override void _setAnimation(Vector2 move)

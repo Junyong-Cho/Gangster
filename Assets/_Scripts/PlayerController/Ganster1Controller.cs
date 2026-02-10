@@ -29,9 +29,9 @@ class Ganster1Controller : PlayerController
         base.DamageQuit();
     }
 
-    public override void GetDamage(int damage)
+    public override int GetDamage(int damage)
     {
-        base.GetDamage(damage);
+        return base.GetDamage(damage);
     }
 
     void _reload()                  // 장전 시작

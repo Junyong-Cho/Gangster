@@ -22,7 +22,7 @@ public abstract class AnyController : MonoBehaviour
     protected Transform attackPoint;                // 공격 위치
 
 
-    public abstract void GetDamage(int damage);     // 데미지 입음
+    public abstract int GetDamage(int damage);     // 데미지 입음
     public virtual void DamageQuit() => _damage = false;    // 데미지 애니메이션 탈출
 
     public virtual void AttackQuit() => _whileAttack = false;

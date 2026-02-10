@@ -22,10 +22,10 @@ partial class ZombieController
         player.GetDamage(_attackPower);
     }
 
-    public override void GetDamage(int damage)
+    public override int GetDamage(int damage)
     {
         if (_dead) 
-            return;
+            return 0;
 
         _hp -= damage;
 
@@ -35,6 +35,8 @@ partial class ZombieController
             _dead = true;
             animator.SetTrigger(Die);
             StartCoroutine(_destroyZombie(gameObject));
+
+            return _score;
         }
 
         _damage = true;
@@ -42,11 +44,13 @@ partial class ZombieController
         hpBar.value = _hp / _maxHp;
 
         animator.SetTrigger(Damage);
+
+        return 0;
     }
 
     IEnumerator _destroyZombie(GameObject zombie)
     {
-        if (true)//(Random.Range(0, 10) == 0)               // 10% 확률로 회복 아이템 생성
+        if (Random.Range(0, 10) == 0)               // 10% 확률로 회복 아이템 생성
         {
             var heal = ObjectPoolSingletons.HealItemPool.Get();
             heal.transform.position = transform.position;

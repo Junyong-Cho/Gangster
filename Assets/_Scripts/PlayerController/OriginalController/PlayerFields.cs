@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 
 partial class PlayerController
@@ -12,4 +13,9 @@ partial class PlayerController
     protected InputSystem_Actions input;            // 인풋시스템
 
     protected WaitForSeconds _attackSpeed = new(1.5f);    // 공격 속도
+
+    [SerializeField]
+    protected TextMeshProUGUI scoreText;
+    [SerializeField]
+    protected GameObject gameOverBoard;
 }

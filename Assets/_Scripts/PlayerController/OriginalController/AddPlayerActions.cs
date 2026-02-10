@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using static AnimeParams;
 
@@ -14,11 +15,26 @@ public partial class PlayerController
         _idleTimer.Start();
     }
 
+    protected void AddScore(int score)
+    {
+        if (score <= 0)
+            return;
+        scoreText.SetText("{0}", int.Parse(scoreText.text) + score);
+    }
+
     protected virtual void _die()
     {
         _dead = true;
         _speed = 0f;
         animator.SetTrigger(Die);
+        StartCoroutine(CallGameBoard());
+    }
+    
+    IEnumerator CallGameBoard()
+    {
+        gameOverBoard.GetComponent<GameOverBoardController>().SetScore(scoreText.text);
+        yield return new WaitForSeconds(1.5f);
+        gameOverBoard.SetActive(true);
     }
 
     protected override void _attack()
