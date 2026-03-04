@@ -28,7 +28,7 @@ public partial class PlayerController : AnyController
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(HealItem))
+        if (collision.CompareTag(HealItem))             // 아이템 닿으면 회복
         {
             _hp = Mathf.Min(_maxHp, _hp + 30);
             hpBar.value = _hp / _maxHp;

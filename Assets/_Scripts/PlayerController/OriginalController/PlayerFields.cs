@@ -15,7 +15,7 @@ partial class PlayerController
     protected WaitForSeconds _attackSpeed = new(1.5f);    // 공격 속도
 
     [SerializeField]
-    protected TextMeshProUGUI scoreText;
+    protected TextMeshProUGUI scoreText;            // 점수
     [SerializeField]
-    protected GameObject gameOverBoard;
+    protected GameObject gameOverBoard;             // 호출할 게임오버 보드
 }

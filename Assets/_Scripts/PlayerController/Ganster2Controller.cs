@@ -13,12 +13,12 @@ public class Ganster2Controller : PlayerController
 
     void Start()
     {
-        hitEnemy = new Collider2D[10];  // 최대 10놈만 때릴 것
+        hitEnemy = new Collider2D[10];  // 최대 10명만 때릴 것
 
         contactFilter = new();
 
         contactFilter.useTriggers = true;
-        contactFilter.SetLayerMask(enemyLayers);
+        contactFilter.SetLayerMask(enemyLayers);    // enemyLayer만 감지
         contactFilter.useLayerMask = true;
     }
 
@@ -35,7 +35,7 @@ public class Ganster2Controller : PlayerController
         animator.SetTrigger(Attack);
     }
 
-    void _onJab()
+    void _onJab()       // 주먹이 닿는 범위에 있는 최대 10명의 적 공격
     {
         int enemys = Physics2D.OverlapCircle(attackPoint.position, _attackRange, contactFilter, hitEnemy);
 

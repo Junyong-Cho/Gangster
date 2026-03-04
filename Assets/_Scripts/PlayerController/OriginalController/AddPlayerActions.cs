@@ -5,7 +5,7 @@ using static AnimeParams;
 
 public partial class PlayerController
 {
-    protected virtual void _action(Action action)             // 움직이면 딴짓 시간 재시작
+    protected virtual void _action(Action action)               // 움직이면 딴짓 시간 재시작 (사실상 필요없어짐)
     {
         if (_dead)
             return;
@@ -15,14 +15,14 @@ public partial class PlayerController
         _idleTimer.Start();
     }
 
-    protected void AddScore(int score)
+    protected void AddScore(int score)                          // 점수 획득
     {
         if (score <= 0)
             return;
         scoreText.SetText("{0}", int.Parse(scoreText.text) + score);
     }
 
-    protected virtual void _die()
+    protected virtual void _die()                               // 사망
     {
         _dead = true;
         _speed = 0f;
@@ -30,7 +30,7 @@ public partial class PlayerController
         StartCoroutine(CallGameBoard());
     }
     
-    IEnumerator CallGameBoard()
+    IEnumerator CallGameBoard()                                 // 사망 시 게임오버 보드 호출
     {
         gameOverBoard.GetComponent<GameOverBoardController>().SetScore(scoreText.text);
         yield return new WaitForSeconds(1.5f);

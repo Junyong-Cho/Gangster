@@ -78,6 +78,7 @@ crashlytics-build.properties
 
 # TestRunner generated files
 InitTestScene*.unity*
+**/Mulmaru*
 
 # Addressables default ignores, before user customizations
 /ServerData
@@ -99,6 +100,8 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
 *.slnx
+
+Capturing**
 
 # 무료 에셋
 **/Pngs/
